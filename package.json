@@ -8,9 +8,12 @@
     "@types/react": "16.9.2",
     "@types/react-dom": "16.9.0",
     "exif-js": "^2.3.0",
+    "fast-xml-parser": "^3.12.20",
+    "leaflet": "^1.5.1",
     "piexifjs": "^1.0.6",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-leaflet": "^2.4.0",
     "react-scripts": "3.1.1",
     "typescript": "3.5.3"
   },
