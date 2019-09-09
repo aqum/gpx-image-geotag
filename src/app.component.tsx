@@ -1,10 +1,28 @@
 import React, { Component } from 'react';
 import './app.component.scss';
 import { GpxForm } from './gpx-form/gpx-form.component';
-import { ImagesForm } from './images-form/images-form.component';
+import { ImagesForm, FormImage } from './images-form/images-form.component';
 import { ImagesMap } from './images-map/images-map.component';
 
-export class App extends Component {
+interface AppState {
+  images: FormImage[];
+}
+
+export class App extends Component<{}, AppState> {
+  constructor(props) {
+    super(props);
+    this.handleImagesChange = this.handleImagesChange.bind(this);
+    this.state = {
+      images: []
+    };
+  }
+
+  handleImagesChange(images: FormImage[]) {
+    this.setState({
+      images
+    });
+  }
+
   render() {
     return (
       <div className="geotag">
@@ -20,11 +38,16 @@ export class App extends Component {
 
         <section className="g-step">
           <h2 className="g-step__title">2. Choose .jpg photos</h2>
-          <ImagesForm />
+          <ImagesForm onImagesChange={this.handleImagesChange} />
         </section>
 
         <section className="g-step">
           <h2 className="g-step__title">3. Corelate time</h2>
+          <div>
+            {this.state.images.map(image => (
+              <img src={image.thumbnailUrl} width="50" alt={image.name} />
+            ))}
+          </div>
           <ImagesMap />
         </section>
       </div>
