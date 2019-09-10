@@ -1,26 +1,71 @@
 import React, { Component } from 'react';
 import './app.component.scss';
-import { GpxForm } from './gpx-form/gpx-form.component';
+import { GpxForm, GpxPoint } from './gpx-form/gpx-form.component';
 import { ImagesForm, FormImage } from './images-form/images-form.component';
 import { ImagesMap } from './images-map/images-map.component';
 
 interface AppState {
   images: FormImage[];
+  points: GpxPoint[];
 }
 
 export class App extends Component<{}, AppState> {
   constructor(props) {
     super(props);
+
     this.handleImagesChange = this.handleImagesChange.bind(this);
+    this.handleGpxChange = this.handleGpxChange.bind(this);
+
     this.state = {
-      images: []
+      images: [],
+      points: []
     };
   }
 
   handleImagesChange(images: FormImage[]) {
     this.setState({
-      images
+      images: images
     });
+    this.updateImagesLocation();
+  }
+
+  handleGpxChange(points: GpxPoint[]) {
+    this.setState({
+      points
+    });
+    this.updateImagesLocation();
+  }
+
+  updateImagesLocation() {
+    const imagesWithGpx = this.state.images.map(image =>
+      App.attachGpsCoordinates(image, this.state.points)
+    );
+
+    this.setState({
+      images: imagesWithGpx
+    });
+  }
+
+  static attachGpsCoordinates(image: FormImage, points: GpxPoint[]): FormImage {
+    // TODO: consider updating algorithm to find midpoint (points can be far apart)
+    if (image.gps) {
+      return image;
+    }
+
+    // Algorithm expects that points are sorted from oldest to newest
+    const closestPoint = points.find(point => point.time > image.lastModified);
+
+    if (!closestPoint) {
+      return image;
+    }
+
+    return {
+      ...image,
+      gps: {
+        lat: closestPoint.lat,
+        lon: closestPoint.lon
+      }
+    };
   }
 
   render() {
@@ -33,7 +78,7 @@ export class App extends Component<{}, AppState> {
 
         <section className="g-step">
           <h2 className="g-step__title">1. Choose GPX file</h2>
-          <GpxForm />
+          <GpxForm onChange={this.handleGpxChange} />
         </section>
 
         <section className="g-step">

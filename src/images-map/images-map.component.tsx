@@ -19,7 +19,6 @@ export interface ImagesMapProps {
 
 export class ImagesMap extends Component<ImagesMapProps> {
   render() {
-    console.log(this.props.images);
     const position = [51.505, -0.09];
     return (
       <div className="images-map">
@@ -31,7 +30,6 @@ export class ImagesMap extends Component<ImagesMapProps> {
           {this.props.images
             .filter(image => image.gps)
             .map(image => {
-              console.log(image.gps && [image.gps.lat, image.gps.lon]);
               return (
                 <Marker
                   position={image.gps && [image.gps.lat, image.gps.lon]}
