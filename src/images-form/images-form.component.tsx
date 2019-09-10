@@ -4,6 +4,7 @@ import * as piexifjs from 'piexifjs';
 export interface FormImage {
   thumbnailUrl: string;
   name: string;
+  lastModified: Date;
   gps?: {
     lat: number;
     lon: number;
@@ -13,6 +14,7 @@ export interface FormImage {
 interface StaticImageFile {
   dataUrl: string;
   name: string;
+  lastModified: Date;
 }
 
 interface ImagesFormProps {
@@ -41,12 +43,14 @@ export class ImagesForm extends Component<ImagesFormProps> {
       const result: FormImage = {
         // TODO: rescale image because operating big thumbnails is cpu/ram intensive
         thumbnailUrl: imageFile.dataUrl,
-        name: imageFile.name
+        name: imageFile.name,
+        lastModified: imageFile.lastModified
       };
 
       const exifData = piexifjs.load(imageFile.dataUrl);
       const latDms = exifData.GPS[piexifjs.GPSIFD.GPSLatitude];
       const lonDms = exifData.GPS[piexifjs.GPSIFD.GPSLongitude];
+
       if (latDms && lonDms) {
         const lat = piexifjs.GPSHelper.dmsRationalToDeg(latDms);
         const lon = piexifjs.GPSHelper.dmsRationalToDeg(lonDms);
@@ -77,7 +81,8 @@ export class ImagesForm extends Component<ImagesFormProps> {
 
         resolve({
           dataUrl: (result as string) || '',
-          name: file.name
+          name: file.name,
+          lastModified: new Date(file.lastModified)
         });
       };
 

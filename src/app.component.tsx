@@ -45,10 +45,15 @@ export class App extends Component<{}, AppState> {
           <h2 className="g-step__title">3. Corelate time</h2>
           <div>
             {this.state.images.map(image => (
-              <img src={image.thumbnailUrl} width="50" alt={image.name} />
+              <img
+                src={image.thumbnailUrl}
+                width="50"
+                alt={image.name}
+                key={image.name}
+              />
             ))}
           </div>
-          <ImagesMap />
+          <ImagesMap images={this.state.images} />
         </section>
       </div>
     );
