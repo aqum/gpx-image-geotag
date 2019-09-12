@@ -9,6 +9,8 @@
     "@types/react-dom": "16.9.0",
     "exif-js": "^2.3.0",
     "fast-xml-parser": "^3.12.20",
+    "file-saver": "^2.0.2",
+    "jszip": "^3.2.2",
     "leaflet": "^1.5.1",
     "piexifjs": "^1.0.6",
     "react": "^16.9.0",

@@ -3,6 +3,7 @@ import './app.component.scss';
 import { GpxForm, GpxPoint } from './gpx-form/gpx-form.component';
 import { ImagesForm, FormImage } from './images-form/images-form.component';
 import { ImagesMap } from './images-map/images-map.component';
+import { GeotagDownload } from './geotag-download/geotag-download.component';
 
 interface AppState {
   images: FormImage[];
@@ -99,6 +100,11 @@ export class App extends Component<{}, AppState> {
             ))}
           </div>
           <ImagesMap images={this.state.images} />
+        </section>
+
+        <section className="g-step">
+          <h2 className="g-step__title">4. Download geotagged photos</h2>
+          <GeotagDownload images={this.state.images} />
         </section>
       </div>
     );

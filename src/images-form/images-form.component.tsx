@@ -9,6 +9,7 @@ export interface FormImage {
     lat: number;
     lon: number;
   };
+  originalDataUrl: string;
 }
 
 interface StaticImageFile {
@@ -44,7 +45,8 @@ export class ImagesForm extends Component<ImagesFormProps> {
         // TODO: rescale image because operating big thumbnails is cpu/ram intensive
         thumbnailUrl: imageFile.dataUrl,
         name: imageFile.name,
-        lastModified: imageFile.lastModified
+        lastModified: imageFile.lastModified,
+        originalDataUrl: imageFile.dataUrl
       };
 
       const exifData = piexifjs.load(imageFile.dataUrl);
