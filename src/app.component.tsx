@@ -99,7 +99,7 @@ export class App extends Component<{}, AppState> {
               />
             ))}
           </div>
-          <ImagesMap images={this.state.images} />
+          <ImagesMap images={this.state.images} points={this.state.points} />
         </section>
 
         <section className="g-step">
