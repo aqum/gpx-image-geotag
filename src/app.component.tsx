@@ -4,10 +4,12 @@ import { GpxForm, GpxPoint } from './gpx-form/gpx-form.component';
 import { ImagesForm, FormImage } from './images-form/images-form.component';
 import { ImagesMap } from './images-map/images-map.component';
 import { GeotagDownload } from './geotag-download/geotag-download.component';
+import { OffsetControl } from './offset-control/offset-control.component';
 
 interface AppState {
   images: FormImage[];
   points: GpxPoint[];
+  offsetSecs: number;
 }
 
 export class App extends Component<{}, AppState> {
@@ -16,10 +18,12 @@ export class App extends Component<{}, AppState> {
 
     this.handleImagesChange = this.handleImagesChange.bind(this);
     this.handleGpxChange = this.handleGpxChange.bind(this);
+    this.handleOffsetChange = this.handleOffsetChange.bind(this);
 
     this.state = {
       images: [],
-      points: []
+      points: [],
+      offsetSecs: 0
     };
   }
 
@@ -39,7 +43,7 @@ export class App extends Component<{}, AppState> {
 
   updateImagesLocation() {
     const imagesWithGpx = this.state.images.map(image =>
-      App.attachGpsCoordinates(image, this.state.points)
+      App.attachGpsCoordinates(image, this.state.points, this.state.offsetSecs)
     );
 
     this.setState({
@@ -47,14 +51,28 @@ export class App extends Component<{}, AppState> {
     });
   }
 
-  static attachGpsCoordinates(image: FormImage, points: GpxPoint[]): FormImage {
+  handleOffsetChange(offsetSecs: number): void {
+    this.setState({
+      offsetSecs
+    });
+
+    this.updateImagesLocation();
+  }
+
+  static attachGpsCoordinates(
+    image: FormImage,
+    points: GpxPoint[],
+    offsetSecs: number = 0
+  ): FormImage {
     // TODO: consider updating algorithm to find midpoint (points can be far apart)
-    if (image.gps) {
-      return image;
-    }
 
     // Algorithm expects that points are sorted from oldest to newest
-    const closestPoint = points.find(point => point.time > image.lastModified);
+    const lastModifiedWithOffset = new Date(
+      image.lastModified.getTime() + offsetSecs * 1000
+    );
+    const closestPoint = points.find(
+      point => point.time > lastModifiedWithOffset
+    );
 
     if (!closestPoint) {
       return image;
@@ -89,6 +107,7 @@ export class App extends Component<{}, AppState> {
 
         <section className="g-step">
           <h2 className="g-step__title">3. Corelate time</h2>
+          <OffsetControl onChange={this.handleOffsetChange} />
           <div>
             {this.state.images.map(image => (
               <img

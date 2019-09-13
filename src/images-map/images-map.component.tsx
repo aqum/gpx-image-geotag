@@ -29,7 +29,7 @@ export interface ImagesMapProps {
 export class ImagesMap extends Component<ImagesMapProps> {
   render() {
     const linePoints = this.props.points.map(point => [point.lat, point.lon]);
-    let bounds: LatLngBounds = [[0,0], [75,180]];
+    let bounds: LatLngBounds = [[0, 0], [75, 180]];
     if (linePoints.length > 1) {
       bounds = [linePoints[0], linePoints[linePoints.length - 1]];
     }
