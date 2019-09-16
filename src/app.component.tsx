@@ -95,36 +95,43 @@ export class App extends Component<{}, AppState> {
           <h3 className="g-header__subtitle">No upload needed</h3>
         </section>
 
-        <section className="g-step">
-          <h2 className="g-step__title">1. Choose GPX file</h2>
-          <GpxForm onChange={this.handleGpxChange} />
-        </section>
+        <div className="geotag__steps">
+          <section className="g-step">
+            <h2 className="g-step__title">Select GPX file</h2>
+            <GpxForm onChange={this.handleGpxChange} />
+          </section>
 
-        <section className="g-step">
-          <h2 className="g-step__title">2. Choose .jpg photos</h2>
-          <ImagesForm onImagesChange={this.handleImagesChange} />
-        </section>
+          <section className="g-step">
+            <h2 className="g-step__title">Pick .jpg photos</h2>
+            <ImagesForm onImagesChange={this.handleImagesChange} />
+          </section>
 
-        <section className="g-step">
-          <h2 className="g-step__title">3. Corelate time</h2>
-          <OffsetControl onChange={this.handleOffsetChange} />
-          <div>
-            {this.state.images.map(image => (
-              <img
-                src={image.thumbnailUrl}
-                width="50"
-                alt={image.name}
-                key={image.name}
-              />
-            ))}
-          </div>
-          <ImagesMap images={this.state.images} points={this.state.points} />
-        </section>
+          <section className="g-step">
+            <h2 className="g-step__title">Corelate time</h2>
+            <OffsetControl onChange={this.handleOffsetChange} />
+            <div>
+              {this.state.images.map(image => (
+                <img
+                  src={image.thumbnailUrl}
+                  width="50"
+                  alt={image.name}
+                  key={image.name}
+                />
+              ))}
+            </div>
+            <ImagesMap images={this.state.images} points={this.state.points} />
+          </section>
 
-        <section className="g-step">
-          <h2 className="g-step__title">4. Download geotagged photos</h2>
-          <GeotagDownload images={this.state.images} />
-        </section>
+          <section className="g-step">
+            <h2 className="g-step__title">Download geotagged photos</h2>
+            <GeotagDownload images={this.state.images} />
+          </section>
+
+          <section className="g-step">
+            <h2 className="g-step__title">Read more</h2>
+            about author, how it works, limitations, github, how to send feedback
+          </section>
+        </div>
       </div>
     );
   }
