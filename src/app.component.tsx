@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import './app.component.scss';
 import { GpxForm, GpxPoint } from './gpx-form/gpx-form.component';
 import { ImagesForm, FormImage } from './images-form/images-form.component';
-import { ImagesMap } from './images-map/images-map.component';
 import { GeotagDownload } from './geotag-download/geotag-download.component';
-import { OffsetControl } from './offset-control/offset-control.component';
+import { CorrelateStep } from './correlate-step/correlate-step.component';
 
 interface AppState {
   images: FormImage[];
@@ -106,30 +105,21 @@ export class App extends Component<{}, AppState> {
             <ImagesForm onImagesChange={this.handleImagesChange} />
           </section>
 
-          <section className="g-step">
-            <h2 className="g-step__title">Corelate time</h2>
-            <OffsetControl onChange={this.handleOffsetChange} />
-            <div>
-              {this.state.images.map(image => (
-                <img
-                  src={image.thumbnailUrl}
-                  width="50"
-                  alt={image.name}
-                  key={image.name}
-                />
-              ))}
-            </div>
-            <ImagesMap images={this.state.images} points={this.state.points} />
-          </section>
+          <CorrelateStep
+            images={this.state.images}
+            points={this.state.points}
+            onOffsetChange={this.handleOffsetChange}
+          />
 
           <section className="g-step">
-            <h2 className="g-step__title">Download geotagged photos</h2>
+            <h2 className="g-step__title">Finish</h2>
             <GeotagDownload images={this.state.images} />
           </section>
 
           <section className="g-step">
             <h2 className="g-step__title">Read more</h2>
-            about author, how it works, limitations, github, how to send feedback
+            about author, how it works, limitations, github, how to send
+            feedback
           </section>
         </div>
       </div>

@@ -1,0 +1,17 @@
+@import '../variables.scss';
+
+.geotag-download {
+  &__button {
+    background: $color-main;
+    color: #fff;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+    border: 0;
+
+    &:hover {
+      background: lighten($color-main, 10);
+    }
+  }
+}

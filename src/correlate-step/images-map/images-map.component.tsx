@@ -9,9 +9,9 @@ import {
 } from 'react-leaflet';
 import './images-map.component.scss';
 import 'leaflet/dist/leaflet.css';
-import { FormImage } from '../images-form/images-form.component';
+import { FormImage } from '../../images-form/images-form.component';
 import L from 'leaflet';
-import { GpxPoint } from '../gpx-form/gpx-form.component';
+import { GpxPoint } from '../../gpx-form/gpx-form.component';
 
 delete L.Icon.Default.prototype._getIconUrl;
 

@@ -4,6 +4,7 @@ import { FormImage } from '../images-form/images-form.component';
 import * as piexifjs from 'piexifjs';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
+import './geotag-download.component.scss';
 
 export interface GeotagDownloadProps {
   images: FormImage[];
@@ -57,7 +58,12 @@ export class GeotagDownload extends Component<GeotagDownloadProps> {
   render() {
     return (
       <div className="geotag-download">
-        <button onClick={this.handleDownload}>Download</button>
+        <button
+          onClick={this.handleDownload}
+          className="geotag-download__button"
+        >
+          Download .zip file
+        </button>
       </div>
     );
   }
