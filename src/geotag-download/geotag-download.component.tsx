@@ -5,6 +5,7 @@ import * as piexifjs from 'piexifjs';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import './geotag-download.component.scss';
+import { MessageBox } from '../message-box/message-box.component';
 
 export interface GeotagDownloadProps {
   images: FormImage[];
@@ -58,6 +59,11 @@ export class GeotagDownload extends Component<GeotagDownloadProps> {
   render() {
     return (
       <div className="geotag-download">
+        <MessageBox
+          text={
+            "Existing GPS data will be replaced. Files outside GPS range won't be modified."
+          }
+        />
         <button
           onClick={this.handleDownload}
           className="geotag-download__button"

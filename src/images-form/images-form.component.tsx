@@ -1,5 +1,6 @@
 import React, { Component, ChangeEvent } from 'react';
 import * as piexifjs from 'piexifjs';
+import { MessageBox } from '../message-box/message-box.component';
 
 export interface FormImage {
   thumbnailUrl: string;
@@ -98,6 +99,8 @@ export class ImagesForm extends Component<ImagesFormProps> {
   render() {
     return (
       <form>
+        <MessageBox text={'It is better not mix photos from different cameras. Their internal clock might not be synchronized. Read more.'} />
+        <MessageBox text={'You can choose photos files before GPX file to see geotagged photos on map.'} />
         <input
           type="file"
           multiple

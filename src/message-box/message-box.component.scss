@@ -1,0 +1,10 @@
+$color-bg-message: #d1f3fa;
+
+.message-box {
+  padding: 10px;
+  font-size: 14px;
+  margin: 10px 0;
+  border-radius: 3px;
+  background: $color-bg-message;
+  border: 2px solid darken($color-bg-message, 5);
+}

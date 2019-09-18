@@ -118,8 +118,45 @@ export class App extends Component<{}, AppState> {
 
           <section className="g-step">
             <h2 className="g-step__title">Read more</h2>
-            about author, how it works, limitations, github, how to send
-            feedback
+            <h4>About project</h4>
+            <p>
+              This project came from simple need - I wanted to know where my
+              photos were taken. Lot of photo apps can display neat pin on map.
+              My camera doesn't have GPS but I do record my trips on bike and
+              foot using Strava.
+            </p>
+            <p>
+              Second issue was that any online solution wasn't good enough or
+              required upload of my photos to server. This application geotag
+              photos in your browser. It is perfect example of what is possible
+              with modern JavaScript tech.
+            </p>
+            <p>
+              Code is open sourced so feel free to check it or contribute: TODO:
+              github link
+            </p>
+            <h4>How it works?</h4>
+            <p>
+              Both GPX file and photos have their times so it is matter of
+              corelating those two.
+            </p>
+            <h4>Author</h4>
+            <p>My name is Adam Florczak. I'm based in Warsaw, Poland.</p>
+            <p>
+              Here is blog (in Polish) about my trips:{' '}
+              <a href="https://rowerotopia.pl">rowerotopia.pl</a>
+            </p>
+            <p>
+              <a href="https://www.linkedin.com/in/adam-florczak-4379b692/">
+                Linkedin
+              </a>
+            </p>
+            <h4>Feedback & contact</h4>
+            <p>
+              If something doesn't work or you have suggestion how to improve
+              this app it will be best if you open (TODO link) github issue.
+            </p>
+            <p>For direct contact here is my email: adam.florczak@me.com</p>
           </section>
         </div>
       </div>
