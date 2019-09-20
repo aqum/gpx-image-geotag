@@ -4,6 +4,7 @@ import { ImagesMap } from './images-map/images-map.component';
 import { FormImage } from '../images-form/images-form.component';
 import { GpxPoint } from '../gpx-form/gpx-form.component';
 import './correlate-step.component.scss';
+import { MessageBox } from '../message-box/message-box.component';
 
 export interface CorrelateStepProps {
   images: FormImage[];
@@ -39,6 +40,8 @@ export class CorrelateStep extends Component<CorrelateStepProps> {
             </div>
           </div>
         )}
+
+        <MessageBox text="Your GPX recorder (f.e. phone) and your camera might not share the same time. Check your photos and update offset if necessary." />
       </section>
     );
   }
