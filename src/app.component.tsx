@@ -118,45 +118,68 @@ export class App extends Component<{}, AppState> {
 
           <section className="g-step">
             <h2 className="g-step__title">Read more</h2>
+
             <h4>About project</h4>
             <p>
-              This project came from simple need - I wanted to know where my
-              photos were taken. Lot of photo apps can display neat pin on map.
-              My camera doesn't have GPS but I do record my trips on bike and
-              foot using Strava.
+              This is side-project that I built because I couldn't find good
+              enough solution to geotag my photos. It doesn't require any
+              upload. Images are processed inside your browser.
             </p>
             <p>
-              Second issue was that any online solution wasn't good enough or
-              required upload of my photos to server. This application geotag
-              photos in your browser. It is perfect example of what is possible
-              with modern JavaScript tech.
+              If you find it useful or the exact opposite - it doesn't work for
+              you - let me know (see author section).
             </p>
             <p>
-              Code is open sourced so feel free to check it or contribute: TODO:
-              github link
+              Code is open sourced so feel free to inspect it or contribute on{' '}
+              <a href="https://github.com/aqum/gpx-image-geotag">Github</a>
             </p>
+
+            <h4>What is GPX file?</h4>
+            <p>
+              GPX file is basically collection of coordinates and timestamps. Is
+              is structurized using XML tags so computer can parse it more
+              easily. You can open it in text editor and see for yourself.
+            </p>
+            <p>Here is sample line from GPX file:</p>
+            <code>
+              <pre>
+                {`<trkpt lat="50.8761400" lon="15.1888720">
+  <ele>377.5</ele>
+  <time>2019-08-17T09:49:06Z</time>
+</trkpt>`}
+              </pre>
+            </code>
+
             <h4>How it works?</h4>
             <p>
-              Both GPX file and photos have their times so it is matter of
-              corelating those two.
+              Your photo has creation date. Based on this we can look for
+              closest timestamp in GPX file. Then we take coordinates and write
+              them to jpeg metadata known also as{' '}
+              <a href="https://pl.wikipedia.org/wiki/Exchangeable_Image_File_Format">
+                Exif
+              </a>
+              .
             </p>
+            <p>
+              Of course you can do it yourself but with this app it is much
+              faster. Isn't it? ;)
+            </p>
+
             <h4>Author</h4>
-            <p>My name is Adam Florczak. I'm based in Warsaw, Poland.</p>
+            <p>
+              My name is Adam Florczak. I'm based in Warsaw (Poland) and I do
+              programming for a living.
+            </p>
             <p>
               Here is blog (in Polish) about my trips:{' '}
               <a href="https://rowerotopia.pl">rowerotopia.pl</a>
             </p>
+            <p>My email: adam.florczak [at] me.com</p>
             <p>
               <a href="https://www.linkedin.com/in/adam-florczak-4379b692/">
                 Linkedin
               </a>
             </p>
-            <h4>Feedback & contact</h4>
-            <p>
-              If something doesn't work or you have suggestion how to improve
-              this app it will be best if you open (TODO link) github issue.
-            </p>
-            <p>For direct contact here is my email: adam.florczak@me.com</p>
           </section>
         </div>
       </div>
