@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/gpx-image-geotag/static/css/main.27c1d2de.chunk.css",
+    "main.js": "/gpx-image-geotag/static/js/main.af1f45c2.chunk.js",
+    "main.js.map": "/gpx-image-geotag/static/js/main.af1f45c2.chunk.js.map",
+    "runtime-main.js": "/gpx-image-geotag/static/js/runtime-main.56c0669e.js",
+    "runtime-main.js.map": "/gpx-image-geotag/static/js/runtime-main.56c0669e.js.map",
+    "static/css/2.098bc035.chunk.css": "/gpx-image-geotag/static/css/2.098bc035.chunk.css",
+    "static/js/2.ed15dd9a.chunk.js": "/gpx-image-geotag/static/js/2.ed15dd9a.chunk.js",
+    "static/js/2.ed15dd9a.chunk.js.map": "/gpx-image-geotag/static/js/2.ed15dd9a.chunk.js.map",
+    "index.html": "/gpx-image-geotag/index.html",
+    "precache-manifest.d1db15ecca772952597419479c8000d5.js": "/gpx-image-geotag/precache-manifest.d1db15ecca772952597419479c8000d5.js",
+    "service-worker.js": "/gpx-image-geotag/service-worker.js",
+    "static/css/2.098bc035.chunk.css.map": "/gpx-image-geotag/static/css/2.098bc035.chunk.css.map",
+    "static/css/main.27c1d2de.chunk.css.map": "/gpx-image-geotag/static/css/main.27c1d2de.chunk.css.map",
+    "static/media/icon.c5c4dbb6.svg": "/gpx-image-geotag/static/media/icon.c5c4dbb6.svg",
+    "static/media/index.scss": "/gpx-image-geotag/static/media/lato-regular.bd03a2cc.woff2"
+  }
+}
