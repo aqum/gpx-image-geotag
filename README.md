@@ -18,3 +18,6 @@ Here is sample line from GPX file:
 
 ### Build & deploy on github pages
 `npm run deploy`
+
+### Tests
+`npm test`
