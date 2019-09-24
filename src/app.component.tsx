@@ -12,7 +12,7 @@ interface AppState {
 }
 
 export class App extends Component<{}, AppState> {
-  static maxGpsTimeframeSecs = 60 * 60; // one hour
+  static maxGpsTimeframeSecs = 15 * 60;
 
   constructor(props) {
     super(props);
@@ -71,9 +71,10 @@ export class App extends Component<{}, AppState> {
     );
 
     // IMPROVEMENT: check if points are always sorted from oldest (in GPX spec) and consider breaking loop early
-    const timeframeSortedPoints = points.sort(point => {
-      const timeframeSecs = calculateTimeframeSecs(point);
-      return timeframeSecs;
+    const timeframeSortedPoints = [...points].sort((pointA, pointB) => {
+      const timeframeSecsA = calculateTimeframeSecs(pointA);
+      const timeframeSecsB = calculateTimeframeSecs(pointB);
+      return timeframeSecsA - timeframeSecsB;
     });
 
     const closestPoint =
@@ -97,7 +98,7 @@ export class App extends Component<{}, AppState> {
 
     function calculateTimeframeSecs(point: GpxPoint): number {
       return (
-        Math.abs(point.time.getTime() - image.lastModified.getTime()) / 1000
+        Math.abs(point.time.getTime() - lastModifiedWithOffset.getTime()) / 1000
       );
     }
   }

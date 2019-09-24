@@ -25,14 +25,20 @@ export class OffsetControl extends Component<
   }
 
   handleOffsetChange(event: ChangeEvent<HTMLInputElement>) {
-    this.props.onChange(parseInt(event.target.value));
+    const value = parseInt(event.target.value);
+    this.setState({
+      offset: value
+    });
+    this.props.onChange(value);
   }
 
   handleOffsetDiff(offsetDiff: number): () => void {
     return () => {
+      const newOffset = this.state.offset + offsetDiff;
       this.setState({
-        offset: this.state.offset + offsetDiff
+        offset: newOffset
       });
+      this.props.onChange(newOffset);
     };
   }
 
