@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ea5cad9422726085a13f4819e64db3d2",
+    "revision": "ada3a2e26713e1556aea7e72a052e519",
     "url": "/gpx-image-geotag/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/gpx-image-geotag/static/css/2.098bc035.chunk.css"
   },
   {
-    "revision": "0e549dddbd8af86b7507",
+    "revision": "49c8adf10a50e214104b",
     "url": "/gpx-image-geotag/static/css/main.27c1d2de.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/gpx-image-geotag/static/js/2.ed15dd9a.chunk.js"
   },
   {
-    "revision": "0e549dddbd8af86b7507",
-    "url": "/gpx-image-geotag/static/js/main.af1f45c2.chunk.js"
+    "revision": "49c8adf10a50e214104b",
+    "url": "/gpx-image-geotag/static/js/main.692219d4.chunk.js"
   },
   {
     "revision": "db7ae046312b0ebf1e9b",

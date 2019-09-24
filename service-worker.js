@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/gpx-image-geotag/precache-manifest.d1db15ecca772952597419479c8000d5.js"
+  "/gpx-image-geotag/precache-manifest.9c9255e07e6de002ead4592960460729.js"
 );
 
 self.addEventListener('message', (event) => {
