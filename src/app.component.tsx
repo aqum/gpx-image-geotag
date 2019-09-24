@@ -12,6 +12,8 @@ interface AppState {
 }
 
 export class App extends Component<{}, AppState> {
+  static maxGpsTimeframeSecs = 60 * 60; // one hour
+
   constructor(props) {
     super(props);
 
@@ -63,15 +65,23 @@ export class App extends Component<{}, AppState> {
     points: GpxPoint[],
     offsetSecs: number = 0
   ): FormImage {
-    // TODO: consider updating algorithm to find midpoint (points can be far apart)
-
-    // Algorithm expects that points are sorted from oldest to newest
+    // IMPROVEMENT: consider updating algorithm to find midpoint (points can be far apart if travelling fast)
     const lastModifiedWithOffset = new Date(
       image.lastModified.getTime() + offsetSecs * 1000
     );
-    const closestPoint = points.find(
-      point => point.time > lastModifiedWithOffset
-    );
+
+    // IMPROVEMENT: check if points are always sorted from oldest (in GPX spec) and consider breaking loop early
+    const timeframeSortedPoints = points.sort(point => {
+      const timeframeSecs = calculateTimeframeSecs(point);
+      return timeframeSecs;
+    });
+
+    const closestPoint =
+      timeframeSortedPoints[0] &&
+      calculateTimeframeSecs(timeframeSortedPoints[0]) <=
+        App.maxGpsTimeframeSecs
+        ? timeframeSortedPoints[0]
+        : undefined;
 
     if (!closestPoint) {
       return image;
@@ -84,6 +94,12 @@ export class App extends Component<{}, AppState> {
         lon: closestPoint.lon
       }
     };
+
+    function calculateTimeframeSecs(point: GpxPoint): number {
+      return (
+        Math.abs(point.time.getTime() - image.lastModified.getTime()) / 1000
+      );
+    }
   }
 
   render() {
