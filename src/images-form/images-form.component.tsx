@@ -21,7 +21,7 @@ interface StaticImageFile {
 }
 
 interface ImagesFormProps {
-  onImagesChange?: (images: FormImage[]) => void;
+  onImagesChange: (images: FormImage[]) => void;
 }
 
 export class ImagesForm extends Component<ImagesFormProps> {
@@ -33,7 +33,8 @@ export class ImagesForm extends Component<ImagesFormProps> {
 
   async handleImageChange(event: ChangeEvent<HTMLInputElement>) {
     const files = event.target.files;
-    if (!files) {
+    if (!files || !files[0]) {
+      this.props.onImagesChange([]);
       return;
     }
 
@@ -74,9 +75,7 @@ export class ImagesForm extends Component<ImagesFormProps> {
     );
     const images = await Promise.all(imagesPromises);
 
-    if (this.props.onImagesChange) {
-      this.props.onImagesChange(images);
-    }
+    this.props.onImagesChange(images);
   }
 
   static async resizeImage(
@@ -106,7 +105,13 @@ export class ImagesForm extends Component<ImagesFormProps> {
           reject('resizeImage: context is null');
           return;
         }
-        context.drawImage(sourceImage, 0, 0, proportionalWidth, proportionalHeight);
+        context.drawImage(
+          sourceImage,
+          0,
+          0,
+          proportionalWidth,
+          proportionalHeight
+        );
 
         // Convert the canvas to a data URL in PNG format
         resolve(canvas.toDataURL());

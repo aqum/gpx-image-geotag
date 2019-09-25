@@ -2,7 +2,7 @@ import React, { Component, ChangeEvent } from 'react';
 import * as xmlParser from 'fast-xml-parser';
 
 export interface GpxFormProps {
-  onChange?: (gpxPoints: GpxPoint[]) => void;
+  onChange: (gpxPoints: GpxPoint[]) => void;
 }
 
 export interface GpxPoint {
@@ -28,15 +28,13 @@ export class GpxForm extends Component<GpxFormProps> {
 
   async handleFileChange(event: ChangeEvent<HTMLInputElement>) {
     const files = event.target.files;
-    if (!files) {
+    if (!files || !files[0]) {
+      this.props.onChange([]);
       return;
     }
 
     const points = await GpxForm.convertFileToGpxPoints(files[0]);
-
-    if (this.props.onChange) {
-      this.props.onChange(points);
-    }
+    this.props.onChange(points);
   }
 
   static convertFileToGpxPoints(file: File): Promise<GpxPoint[]> {

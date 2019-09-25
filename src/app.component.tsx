@@ -29,17 +29,25 @@ export class App extends Component<{}, AppState> {
   }
 
   handleImagesChange(images: FormImage[]) {
-    this.setState({
-      images: images
-    });
-    this.updateImagesLocation();
+    this.setState(
+      {
+        images: images
+      },
+      () => {
+        this.updateImagesLocation();
+      }
+    );
   }
 
   handleGpxChange(points: GpxPoint[]) {
-    this.setState({
-      points
-    });
-    this.updateImagesLocation();
+    this.setState(
+      {
+        points
+      },
+      () => {
+        this.updateImagesLocation();
+      }
+    );
   }
 
   updateImagesLocation() {
@@ -53,11 +61,14 @@ export class App extends Component<{}, AppState> {
   }
 
   handleOffsetChange(offsetSecs: number): void {
-    this.setState({
-      offsetSecs
-    });
-
-    this.updateImagesLocation();
+    this.setState(
+      {
+        offsetSecs
+      },
+      () => {
+        this.updateImagesLocation();
+      }
+    );
   }
 
   static attachGpsCoordinates(
