@@ -44,6 +44,11 @@ export class GeotagDownload extends Component<GeotagDownloadProps> {
       exifData.GPS[
         piexifjs.GPSIFD.GPSLongitude
       ] = piexifjs.GPSHelper.degToDmsRational(image.gps.lon);
+      exifData.GPS[piexifjs.GPSIFD.GPSVersionID] = [2, 2, 0, 0];
+      exifData.GPS[piexifjs.GPSIFD.GPSLatitudeRef] =
+        image.gps.lat < 0 ? 'S' : 'N';
+      exifData.GPS[piexifjs.GPSIFD.GPSLongitudeRef] =
+        image.gps.lon < 0 ? 'W' : 'E';
     }
 
     const exifStr = piexifjs.dump(exifData);
